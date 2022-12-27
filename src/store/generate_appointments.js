@@ -2,7 +2,7 @@ import * as data from "./data"
 
 const getRandomName = (array) => {
     const person = array[Math.floor(Math.random() * array.length)];
-    return `${person.first_name} ${person.last_name}`;
+    return `${person.name} ${person.surname}`;
 };
   
 const getRandomTime = () => {

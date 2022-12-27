@@ -2,11 +2,11 @@ import React, { Component } from "react"
 import { BrowserRouter as Router, Link, Route, Routes } from "react-router-dom"
 import "./App.css"
 
-import Calendar from "./Calendar"
-import Day from "./Day"
-import Home from "./Home"
-import * as data from "./data"
-import generateRandomAppointments from "./utils";
+import Calendar from "./calendar/Calendar"
+import Day from "./day/Day"
+import Home from "./home/Home"
+import * as data from "./store/data"
+import generateRandomAppointments from "./store/generate_appointments";
 
 
 class App extends Component {

@@ -1,4 +1,4 @@
-import generateRandomAppointments from "./utils"
+import generateRandomAppointments from "./generate_appointments"
 
 export const dentists = [
     {"id":101,"name":"Karalee","surname":"Erdely","phonenumber":"736 784 5098","email":"Karalee@dentistcompanybvt.com","isSick":false},

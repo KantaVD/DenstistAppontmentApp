@@ -1,5 +1,5 @@
 import React from "react";
-import AppointmentInMonth from "./AppointmentInMonth";
+import AppointmentInMonth from "./AppointmentInMonth"
 
 function DayInMonth({ appointments }) {
   const appointmentsJSX = appointments.map(({ time, patient }, index) => (
