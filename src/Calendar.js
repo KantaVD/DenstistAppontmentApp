@@ -10,13 +10,15 @@ const divideByDay = appointments => {
       appointmentsByDay[day] = [];
     }
     appointmentsByDay[day].push(appointment);
+    appointmentsByDay[day].sort(function (a,b) {
+      return a.time - b.time
+    })
   });
   return appointmentsByDay;
 };
 
-export default ({ appointments }) => {
+function Calendar ({ appointments }) {
   const appointmentsByDay = divideByDay(appointments);
-
   const daysInMonthJSX = Object.values(
     appointmentsByDay
   ).map((appointmentsInDay, index) => (
@@ -36,3 +38,5 @@ export default ({ appointments }) => {
     </div>
   );
 };
+
+export default Calendar
