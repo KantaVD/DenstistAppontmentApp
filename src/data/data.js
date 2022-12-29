@@ -1,5 +1,3 @@
-import generateRandomAppointments from "./generate_appointments"
-
 export const dentists = [
     {"id":101,"name":"Karalee","surname":"Erdely","phonenumber":"736 784 5098","email":"Karalee@dentistcompanybvt.com","isSick":false},
     {"id":102,"name":"Jamil","surname":"Kliesl","phonenumber":"170 317 2104","email":"Jamil@dentistcompanybvt.com","isSick":false},
@@ -8,6 +6,7 @@ export const dentists = [
 ]
 
 export const assistants = [
+    {"id":200, "name":"no assistant required"},
     {"id":201,"name":"Lynnett","surname":"McKeveney","phonenumber":"403 393 0693","email":"Lynnett@dentistcompanybvt.com","isSick":false},
     {"id":202,"name":"Alice","surname":"Ianniello","phonenumber":"689 217 0610","email":"Alice@dentistcompanybvt.com","isSick":false}
 ]
@@ -65,4 +64,4 @@ export const patients = [
     {"id":50,"name":"Mirna","surname":"Huortic","phonenumber":"579-700-7762","email":"mhuortic1d@buzzfeed.com","isSick":false}
 ]
 
-export const appointments = generateRandomAppointments(150)
+export const appointments = []
