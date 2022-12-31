@@ -1,22 +1,25 @@
-import React from "react";
 import "./Day.css";
 import AppointmentInDay from "./AppointmentInDay";
 
-export default ({ appointments }) => {
-  const sortedAppointments = appointments.sort(function (a,b) {
-    return a.time - b.time
-  })
+function Day({appointments}) {
 
-  const appointmentsJSX = sortedAppointments.map(
-    ({ time, patient, dentist, assistant }, index) => (
-      <AppointmentInDay
-        time={time}
-        patient={patient}
-        dentist={dentist}
-        assistant={assistant}
-        key={index}
-      />
+  const appointmentsJSX = appointments.sort((a, b) => {
+    return a.time - b.time
+    }).map(
+      ({ time, patient, dentist, assistant, id }) => (
+        <AppointmentInDay
+          time={time}
+          patient={patient}
+          dentist={dentist}
+          assistant={assistant}
+          key={id}
+        />
+      )
     )
-  );
-  return <ul className="dayview">{appointmentsJSX}</ul>;
-};
+  return (
+  <ul className="dayview">
+    {appointmentsJSX}
+  </ul>
+)
+}
+export default Day

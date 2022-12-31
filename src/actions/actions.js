@@ -1,3 +1,4 @@
+import { act } from "react-dom/test-utils"
 import * as actions from "./actiontypes"
 
 export const addDentist = (dentist) => {
@@ -60,4 +61,20 @@ export const removeAppointment = (id) => {
         payload: id
     }
 }
+export const moveAppointment = (id, newDay ,newTime) => {
+    return {
+        type: actions.MOVE_APPOINTMENT,
+        payload: {
+            id,
+            newDay,
+            newTime
+        }
+    }
+}
 
+export const setId = (number) => {
+    return {
+        type: actions.SET_ID_STATE,
+        payload: number
+    }
+}

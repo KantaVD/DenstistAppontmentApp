@@ -1,23 +1,25 @@
-import React from "react";
 import "./Calendar.css";
+import { useSelector } from "react-redux";
 import DayInMonth from "./DayInMonth";
 
 const divideByDay = appointments => {
   const appointmentsByDay = {};
-  appointments.forEach(appointment => {
+  appointments.forEach((appointment) => {
     const day = appointment.day;
     if (!appointmentsByDay.hasOwnProperty(day)) {
-      appointmentsByDay[day] = [];
-    }
+        appointmentsByDay[day] = [];
+    };
     appointmentsByDay[day].push(appointment);
-    appointmentsByDay[day].sort(function (a,b) {
-      return a.time - b.time
-    })
   });
+
   return appointmentsByDay;
 };
 
-function Calendar ({ appointments }) {
+function Calendar() {
+  
+  console.log("calenderfunctie")
+  const appointments = useSelector(state => state.appointments)
+  console.log("is dit dat een werkbaar iets?" + appointments)
   const appointmentsByDay = divideByDay(appointments);
   const daysInMonthJSX = Object.values(
     appointmentsByDay
@@ -34,9 +36,11 @@ function Calendar ({ appointments }) {
         <div>Donderdag</div>
         <div>Vrijdag</div>
       </div>
-      <div className="table">{daysInMonthJSX}</div>
+      <div className="table">
+        {daysInMonthJSX}
+      </div>
     </div>
   );
 };
 
-export default Calendar
+export default Calendar;

@@ -6,7 +6,7 @@ export const dentists = [
 ]
 
 export const assistants = [
-    {"id":200, "name":"no assistant required"},
+    {"id":200, "name":"no assistant", "surname": "required"},
     {"id":201,"name":"Lynnett","surname":"McKeveney","phonenumber":"403 393 0693","email":"Lynnett@dentistcompanybvt.com","isSick":false},
     {"id":202,"name":"Alice","surname":"Ianniello","phonenumber":"689 217 0610","email":"Alice@dentistcompanybvt.com","isSick":false}
 ]

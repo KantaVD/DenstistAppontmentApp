@@ -16,8 +16,10 @@ const dentistReducer = (state = dentists, action) => {
                 }
             ]
         case actions.SICK_DENTIST:
-            return state.map(dentist => dentist.id === action.payload.id ?
+            return state.map(
+                dentist => dentist.id === action.payload.id ?
                 {...dentist, isSick: true} : dentist)
+            
         default:
             return state
     }

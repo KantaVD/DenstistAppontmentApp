@@ -4,15 +4,21 @@ import Calendar from "./calendar/Calendar"
 import Day from "./day/Day"
 import Home from "./home/Home"
 import { useEffect } from "react"
-import { useDispatch } from "react-redux"
+import { useSelector, useDispatch } from "react-redux"
 import * as data from "./data/data"
-import { makeAppointment} from "./actions/actions"
-
+import { removeAppointment, makeAppointment, setId} from "./actions/actions"
 
 function App() {
   const dispatch = useDispatch()
+  const dentists = useSelector(state => state.dentists);
+  const assistants = useSelector(state => state.assistants);
+  const patients = useSelector(state => state.patients);
+  const appointments = useSelector(state => state.appointments);
+  let idState = useSelector(state => state.idState);
   
   useEffect(() => {
+
+
     const days = [1,2,3,4,5,8,9,10,11,12,15,16,17,18,19,21,22,23,24,25];
     let appointmentDataList = data.appointments.map((appointment) => appointment.appointmentData);
 
@@ -22,14 +28,14 @@ function App() {
     };
 
     for (let i = 1; i <= 150; i++) {
-      const randomDentist = getRandomName(data.dentists);
-      const randomAssistant = getRandomName(data.assistants)
-      const randomPatient = getRandomName(data.patients)
+      const randomDentist = getRandomName(dentists);
+      const randomAssistant = getRandomName(assistants)
+      const randomPatient = getRandomName(patients)
       const randomTime = Math.floor(Math.random() * (19 - 7) + 7);
       const randomDay = days[Math.floor(Math.random() * days.length)];
 
       const newAppointment = {
-        id: data.appointments.length + 1,
+        id: idState,
         day: randomDay,
         time: randomTime,
         patient: randomPatient,
@@ -39,43 +45,13 @@ function App() {
       };
 
       if(!appointmentDataList.includes(newAppointment.appointmentData)) {
+        idState++
         appointmentDataList.push(newAppointment.appointmentData);
         dispatch(makeAppointment(newAppointment));
-      };
-    };
-    //dispatch();
-  })
-
-  //   const getRandomName = (array) => {
-  //     const person = array[Math.floor(Math.random() * array.length)];
-  //     return `${person.name} ${person.surname}`;
-  //   };
-    
-  //   const getRandomTime = () => {
-  //     let hour;
-  //     while (true) {
-  //         hour = Math.floor(Math.random() * 24);
-  //         if (hour > 7 && hour < 19) {
-  //         return hour;
-  //         }
-  //     }
-  //   };
-  
-  //   const getRandomDay = () => Math.floor(Math.random() * 28) + 1;
-  
-  //   const generateRandomAppointment = () => ({
-  //   day: getRandomDay(),
-  //   time: getRandomTime(),
-  //   patient: getRandomName(patients),
-  //   dentist: getRandomName(dentists),
-  //   assistant: getRandomName(assistants),
-  //   });
-  
-  //   const generateRandomAppointments = num =>
-  //   Array(num)
-  //       .fill(0)
-  //       .map(_ => generateRandomAppointment());
-  // })
+      }
+    }
+    dispatch(setId(idState))
+  },[])
 
   return ( 
     <Router>
@@ -97,12 +73,13 @@ function App() {
           <Routes>
             <Route
               path="/calendar"
-              element={<Calendar appointments={data.appointments} />}
+              element={
+                <Calendar />}
             />
             <Route
               path="/day"
               element={
-                <Day appointments={data.appointments.filter((app) => app.day === 1)} />
+                <Day appointments={appointments.filter(appointment => appointment.day === 1)} />
               }
             />
             <Route path="/" element={<Home />} />
