@@ -1,4 +1,3 @@
-import { act } from "react-dom/test-utils"
 import * as actions from "./actiontypes"
 
 export const addDentist = (dentist) => {
